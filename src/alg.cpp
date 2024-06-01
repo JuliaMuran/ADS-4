@@ -1,7 +1,7 @@
 // Copyright 2021 NNTU-CS
 int countPairs1(int *arr, int len, int value) {
     int count = 0;
-    for (int i = 0; i < len; i++) {
+    for (int i = 0; i < len-1; i++) {
         for (int j = i + 1; j < len; j++) {
             if (arr[i] + arr[j] == value) {
                 count++;
@@ -18,9 +18,9 @@ int countPairs2(int *arr, int len, int value) {
         size -= 1;
     }
     for (int i = 0; i < size; i++) {
-        for (int j = 0; j > i; j++) {
+        for (int j = size - 1; j > i; j--) {
             if (arr[j] + arr[i] == value) {
-                count+=1;
+                count++;
             }
         }
     }
@@ -59,7 +59,7 @@ int cbinsearch(int *arr, int size, int value) {
 int countPairs3(int *arr, int len, int value) {
     int count = 0;
     for (int i = 0; i < len; i++) {
-        count = count + cbinsearch(&arr[i+1], len-1-i, value-arr[i]);
+        count += cbinsearch(&arr[i+1], len-1-i, value-arr[i]);
     }
     return count;
 }
